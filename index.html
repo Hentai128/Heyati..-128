@@ -11,572 +11,1139 @@
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
+
     :root {
+
       --bg: #050807;
+
       --bg2: #0b1410;
+
       --green: #20c997;
+
       --green2: #0fa66e;
+
       --gold: #caa24a;
+
       --gold2: #f4d57a;
+
       --text: #eaf7ef;
+
       --muted: #b5c9bc;
+
       --card: rgba(8, 18, 14, 0.55);
+
       --stroke: rgba(255,255,255,.10);
+
       --shadow: 0 20px 60px rgba(0,0,0,.55);
+
       --glow: 0 0 30px rgba(32,201,151,.18), 0 0 60px rgba(202,162,74,.08);
+
       --radius: 28px;
+
       --radius-lg: 36px;
+
       --radius-sm: 16px;
+
       --transition-fast: .25s ease;
+
       --transition-normal: .35s ease;
+
       --transition-slow: .5s ease;
+
     }
+
+
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
+
+
     html { scroll-behavior: smooth; }
 
+
+
     body {
+
       font-family: "Vazirmatn", sans-serif;
+
       background:
+
         radial-gradient(circle at top, rgba(32,201,151,.15), transparent 35%),
+
         radial-gradient(circle at bottom left, rgba(202,162,74,.08), transparent 25%),
+
         linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+
       color: var(--text);
+
       overflow-x: hidden;
+
       min-height: 100vh;
+
     }
+
+
 
     .particles-container {
+
       position: fixed;
+
       inset: 0;
+
       pointer-events: none;
+
       z-index: 0;
+
       overflow: hidden;
+
     }
+
+
 
     .particle {
+
       position: absolute;
+
       width: 6px;
+
       height: 6px;
+
       border-radius: 50%;
+
       background: radial-gradient(circle, rgba(244,213,122,.95), rgba(32,201,151,.3), transparent 70%);
+
       box-shadow: 0 0 12px rgba(244,213,122,.8), 0 0 20px rgba(32,201,151,.35);
+
       opacity: .8;
+
       animation: floatParticle linear infinite;
+
       filter: blur(.2px);
+
     }
+
+
 
     @keyframes floatParticle {
+
       from { transform: translateY(110vh) translateX(0) scale(0.8); opacity: 0; }
+
       10% { opacity: .95; }
+
       50% { opacity: .7; }
+
       to { transform: translateY(-20vh) translateX(40px) scale(1.25); opacity: 0; }
+
     }
+
+
 
     body::before {
+
       content: "";
+
       position: fixed;
+
       inset: 0;
+
       background:
+
         linear-gradient(120deg, transparent 20%, rgba(255,255,255,0.03) 40%, transparent 60%);
+
       transform: translateX(-100%);
+
       animation: shine 8s linear infinite;
+
       pointer-events: none;
+
       z-index: 0;
+
     }
+
+
 
     @keyframes shine {
+
       0% { transform: translateX(-100%) skewX(-15deg); }
+
       100% { transform: translateX(100%) skewX(-15deg); }
+
     }
+
+
 
     .topbar {
+
       position: fixed;
+
       top: 0; left: 0; right: 0;
+
       z-index: 20;
+
       padding: 12px 18px;
+
       display: flex;
+
       justify-content: space-between;
+
       align-items: center;
+
       pointer-events: none;
+
       backdrop-filter: blur(15px);
+
       -webkit-backdrop-filter: blur(15px);
+
       background: rgba(8, 18, 14, 0.72);
+
       border-bottom: 1px solid rgba(255,255,255,.12);
+
       box-shadow: 0 0 22px rgba(0,0,0,.35);
+
     }
+
+
 
     .topbar-item {
+
       pointer-events: auto;
+
       border: 1px solid rgba(255,255,255,.12);
+
       box-shadow: 0 0 18px rgba(0,0,0,.28), 0 0 15px rgba(32,201,151,.10);
+
       border-radius: var(--radius-sm);
+
       padding: 10px 14px;
+
       color: #eef7f0;
+
       font-weight: 700;
+
       min-width: 130px;
+
       text-align: center;
+
       transition: var(--transition-fast);
+
     }
+
     .topbar-item:hover {
+
       background: rgba(255,255,255,.1);
+
       box-shadow: 0 0 25px rgba(0,0,0,.35), 0 0 20px rgba(32,201,151,.15);
+
     }
+
+
 
     .topbar .time { color: var(--gold2); direction: ltr; }
+
     .topbar .date { color: var(--muted); }
 
+
+
     .container {
+
       width: min(1200px, 92%);
+
       margin: auto;
+
       position: relative;
+
       z-index: 2;
+
       padding: 76px 0 100px;
+
     }
+
+
 
     .hero {
+
       min-height: 100vh;
+
       display: flex;
+
       align-items: center;
+
       justify-content: center;
+
       text-align: center;
+
       position: relative;
+
       padding: 20px 0 120px;
+
     }
+
+
 
     .hero-inner {
+
       width: 100%;
+
       background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+
       border: 1px solid rgba(255,255,255,.12);
+
       box-shadow: var(--shadow), var(--glow);
+
       border-radius: var(--radius-lg);
+
       backdrop-filter: blur(22px);
+
       -webkit-backdrop-filter: blur(22px);
+
       padding: 42px 24px;
+
       position: relative;
+
       overflow: hidden;
+
       transform-style: preserve-3d;
+
       perspective: 1200px;
+
       transition: var(--transition-normal);
+
     }
+
+
 
     .hero-inner::after {
+
       content: "";
+
       position: absolute;
+
       inset: 0;
+
       background: linear-gradient(135deg, rgba(255,255,255,.12), transparent 35%, transparent 65%, rgba(255,255,255,.08));
+
       opacity: .4;
+
       pointer-events: none;
+
     }
+
+
 
     .logo-box {
+
       width: 180px; height: 180px; margin: 0 auto 18px;
+
       border-radius: 50%;
+
       background:
+
         radial-gradient(circle at 30% 30%, rgba(244,213,122,.35), transparent 25%),
+
         radial-gradient(circle at 70% 70%, rgba(32,201,151,.35), transparent 25%),
+
         linear-gradient(145deg, rgba(255,255,255,.12), rgba(255,255,255,.04));
+
       border: 1px solid rgba(255,255,255,.15);
+
       box-shadow: 0 0 25px rgba(32,201,151,.20), inset 0 0 35px rgba(255,255,255,.06);
+
       display: grid; place-items: center;
+
       position: relative;
+
       transform: translateZ(40px);
+
       animation: floatLogo 4s ease-in-out infinite;
+
       overflow: hidden;
+
     }
+
+
 
     .logo-box::before {
+
       content: "";
+
       position: absolute; inset: 12px;
+
       border-radius: 50%;
+
       border: 1px dashed rgba(244,213,122,.35);
+
       animation: rotate 12s linear infinite;
+
     }
+
+
 
     .logo-box span {
+
       font-size: 3.2rem; font-weight: 900; color: var(--gold2);
+
       text-shadow: 0 0 20px rgba(244,213,122,.35);
+
     }
+
+
 
     @keyframes floatLogo { 0%, 100% { transform: translateY(0) translateZ(40px); } 50% { transform: translateY(-10px) translateZ(40px); } }
+
     @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
+
+
     h1 {
+
       font-size: clamp(2rem, 4vw, 4.2rem);
+
       color: #fff;
+
       margin-bottom: 10px;
+
       text-shadow: 0 0 18px rgba(32,201,151,.18);
+
     }
+
+
 
     .subtitle {
+
       color: var(--muted);
+
       font-size: 1.05rem;
+
       line-height: 2;
+
       max-width: 800px;
+
       margin: 0 auto 22px;
+
     }
+
+
 
     .badge-row {
+
       display: flex;
+
       justify-content: center;
+
       flex-wrap: wrap;
+
       gap: 12px;
+
       margin-bottom: 18px;
+
     }
+
+
 
     .badge {
+
       padding: 10px 16px;
+
       border-radius: 999px;
+
       background: rgba(255,255,255,.06);
+
       border: 1px solid rgba(255,255,255,.12);
+
       color: #eef7f0;
+
       box-shadow: inset 0 0 18px rgba(255,255,255,.04);
+
       backdrop-filter: blur(12px);
+
     }
+
+
 
     .grid {
+
       display: grid;
+
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+
       gap: 22px;
+
       margin: 34px 0;
+
     }
+
+
 
     .card {
+
       position: relative;
+
       background: linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.04));
+
       border: 1px solid rgba(255,255,255,.12);
+
       border-radius: var(--radius);
+
       padding: 24px;
+
       box-shadow: var(--shadow);
+
       overflow: hidden;
+
       backdrop-filter: blur(18px);
+
       -webkit-backdrop-filter: blur(18px);
+
       transform: translateY(0) rotateX(0deg) rotateY(0deg);
+
       transition: var(--transition-normal);
+
     }
+
+
 
     .card:hover {
+
       transform: translateY(-8px) scale(1.01);
+
       box-shadow: 0 25px 65px rgba(0,0,0,.6), 0 0 28px rgba(32,201,151,.12);
+
     }
+
+
 
     .card::before {
+
       content: "";
+
       position: absolute;
+
       top: -40%; left: -60%;
+
       width: 60%; height: 180%;
+
       background: linear-gradient(90deg, transparent, rgba(255,255,255,.18), transparent);
+
       transform: rotate(25deg);
+
       animation: cardShine 5.5s ease-in-out infinite;
+
     }
+
+
 
     @keyframes cardShine {
+
       0% { left: -60%; opacity: 0; }
+
       20% { opacity: 1; }
+
       50% { left: 120%; opacity: .9; }
+
       100% { left: 120%; opacity: 0; }
+
     }
+
+
 
     .card h2 {
+
       color: var(--gold2);
+
       margin-bottom: 12px;
+
       font-size: 1.35rem;
+
     }
+
+
 
     .card p, .card li {
+
       color: var(--muted);
+
       line-height: 2;
+
       font-size: 0.98rem;
+
     }
+
+
 
     .section {
+
       margin: 40px 0;
+
       opacity: 0;
+
       transform: translateY(30px);
+
       transition: opacity 1s ease-out, transform 1s ease-out;
+
     }
+
+
 
     .section.visible {
+
       opacity: 1;
+
       transform: translateY(0);
+
     }
+
+
 
     .section-title {
+
       font-size: 1.6rem;
+
       margin: 20px 0 14px;
+
       color: #fff;
+
       position: relative;
+
       display: inline-block;
+
     }
+
+
 
     .section-title::after {
+
       content: "";
+
       position: absolute;
+
       right: 0; bottom: -6px;
+
       width: 100%;
+
       height: 3px;
+
       border-radius: 999px;
+
       background: linear-gradient(90deg, var(--green), var(--gold));
+
       box-shadow: 0 0 16px rgba(32,201,151,.24);
+
     }
+
+
 
     .hadith-box {
+
       min-height: 180px;
+
       display: flex;
+
       flex-direction: column;
+
       justify-content: center;
+
       text-align: center;
+
       transition: var(--transition-slow);
+
     }
+
+
 
     .hadith-text {
+
       font-size: 1.15rem;
+
       color: #f2fff6;
+
       line-height: 2.1;
+
       margin-bottom: 10px;
+
       opacity: 1;
+
       transform: translateY(0);
+
       transition: opacity .5s ease, transform .5s ease;
+
     }
 
+
+
     .hadith-source {
+
       color: var(--gold2);
+
       font-size: .95rem;
+
     }
+
+
 
     .fade-in-hadith { animation: fadeInUpHadith 0.8s ease; }
 
+
+
     @keyframes fadeInUpHadith {
+
       from { opacity: 0; transform: translateY(18px); }
+
       to { opacity: 1; transform: translateY(0); }
+
     }
+
+
 
     .program-list { display: grid; gap: 12px; }
 
+
+
     .program-item {
+
       padding: 14px 16px;
+
       border-radius: var(--radius-sm);
+
       background: rgba(255,255,255,.05);
+
       border: 1px solid rgba(255,255,255,.08);
+
       display: flex;
+
       justify-content: space-between;
+
       align-items: center;
+
       gap: 10px;
+
       transition: var(--transition-fast);
+
     }
+
     .program-item:hover {
+
       background: rgba(255,255,255,.1);
+
       transform: translateY(-2px);
+
     }
+
+
 
     .program-item span {
+
       display: inline-block;
+
       background: linear-gradient(135deg, rgba(32,201,151,.2), rgba(202,162,74,.18));
+
       border: 1px solid rgba(255,255,255,.14);
+
       color: #fff;
+
       padding: 8px 14px;
+
       border-radius: 999px;
+
       white-space: nowrap;
+
       box-shadow: inset 0 0 18px rgba(255,255,255,.05);
+
     }
+
+
 
     .cta {
+
       display: flex;
+
       justify-content: center;
+
       gap: 14px;
+
       flex-wrap: wrap;
+
       margin-top: 18px;
+
     }
+
+
 
     .btn {
+
       border: none;
+
       cursor: pointer;
+
       padding: 14px 22px;
+
       border-radius: 14px;
+
       font-family: inherit;
+
       font-weight: 700;
+
       transition: var(--transition-normal);
+
       text-decoration: none;
+
       display: inline-flex;
+
       align-items: center;
+
       gap: 8px;
+
     }
+
+
 
     .btn-primary {
+
       background: linear-gradient(135deg, var(--green), var(--green2));
+
       color: #03100a;
+
       box-shadow: 0 0 20px rgba(32,201,151,.25);
+
     }
+
+
 
     .btn-primary:hover {
+
       transform: translateY(-3px);
+
       box-shadow: 0 0 30px rgba(32,201,151,.38);
+
     }
+
+
 
     .join-panel {
+
       border: 1px solid rgba(255,255,255,.14);
+
       background: linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.04));
+
       border-radius: var(--radius-lg);
+
       padding: 22px;
+
       text-align: center;
+
       animation: panelWiggle 3.2s ease-in-out infinite;
+
       box-shadow: var(--shadow), var(--glow);
+
       position: relative;
+
       overflow: hidden;
+
     }
+
+
 
     @keyframes panelWiggle {
+
       0%, 100% { transform: translateY(0) rotate(0deg); }
+
       25% { transform: translateY(-3px) rotate(-0.4deg); }
+
       50% { transform: translateY(2px) rotate(0.4deg); }
+
       75% { transform: translateY(-2px) rotate(-0.2deg); }
+
     }
+
+
 
     .join-panel strong {
+
       color: var(--gold2);
+
       display: block;
+
       margin-bottom: 10px;
+
       font-size: 1.2rem;
+
     }
+
+
 
     .footer {
+
       text-align: center;
+
       color: #94a89b;
+
       padding: 26px 0 110px;
+
       font-size: .95rem;
+
     }
+
+
 
     .small-note {
+
       color: #9fb6a7;
+
       margin-top: 10px;
+
       font-size: .9rem;
+
       line-height: 2;
+
     }
+
+
 
     .glow-line {
+
       height: 1px;
+
       background: linear-gradient(90deg, transparent, rgba(32,201,151,.7), rgba(202,162,74,.7), transparent);
+
       margin: 18px 0;
+
     }
+
+
 
     .bottom-bar {
+
       position: fixed;
+
       bottom: 12px;
+
       left: 50%;
+
       transform: translateX(-50%);
+
       width: min(720px, 92%);
+
       z-index: 18;
+
       background: rgba(8, 18, 14, 0.82);
+
       border: 1px solid rgba(255,255,255,.12);
+
       backdrop-filter: blur(18px);
+
       -webkit-backdrop-filter: blur(18px);
+
       box-shadow: 0 0 22px rgba(0,0,0,.35), 0 0 20px rgba(32,201,151,.12);
+
       border-radius: 18px;
+
       padding: 10px 14px;
+
       display: flex;
+
       align-items: center;
+
       justify-content: space-between;
+
       gap: 10px;
+
       font-size: .8rem;
+
       color: #e8f6ed;
+
     }
+
+
 
     .bottom-bar .time { color: var(--gold2); font-weight: 700; direction: ltr; }
+
     .bottom-bar .date { color: var(--muted); font-weight: 600; }
+
     .bottom-bar .center { color: #fff; font-weight: 700; padding: 0 10px; text-align: center; white-space: nowrap; }
 
+
+
     .back-to-top {
+
       position: fixed;
+
       left: 16px;
+
       bottom: 86px;
+
       z-index: 19;
+
       width: 46px;
+
       height: 46px;
+
       border-radius: 50%;
+
       border: 1px solid rgba(255,255,255,.15);
+
       background: rgba(8,18,14,.85);
+
       color: var(--gold2);
+
       display: grid;
+
       place-items: center;
+
       cursor: pointer;
+
       box-shadow: 0 0 18px rgba(0,0,0,.35);
+
       transition: var(--transition-normal);
+
       opacity: 0;
+
       visibility: hidden;
+
     }
 
+
+
     .back-to-top.show {
+
       opacity: 1;
+
       visibility: visible;
+
     }
+
+
 
     .back-to-top:hover { transform: translateY(-4px); }
 
+
+
     .bottom-nav {
+
       position: fixed;
+
       right: 50%;
+
       transform: translateX(50%);
+
       bottom: 68px;
+
       z-index: 18;
+
       width: min(900px, 96%);
+
       background: rgba(8, 18, 14, 0.78);
+
       border: 1px solid rgba(255,255,255,.12);
+
       backdrop-filter: blur(18px);
+
       -webkit-backdrop-filter: blur(18px);
+
       border-radius: 20px;
+
       padding: 10px 12px;
+
       display: grid;
+
       grid-template-columns: repeat(5, 1fr);
+
       gap: 8px;
+
       box-shadow: 0 0 20px rgba(0,0,0,.3);
+
     }
+
+
 
     .bottom-nav a {
+
       text-decoration: none;
+
       color: var(--text);
+
       text-align: center;
+
       padding: 10px 8px;
+
       border-radius: var(--radius-sm);
+
       transition: var(--transition-fast);
+
       font-size: .85rem;
+
     }
+
+
 
     .bottom-nav a i {
+
       display: block;
+
       font-size: 1.05rem;
+
       margin-bottom: 6px;
+
       color: var(--gold2);
+
     }
+
+
 
     .bottom-nav a:hover {
+
       background: rgba(255,255,255,.06);
+
       transform: translateY(-2px);
+
     }
+
+
 
     .bottom-nav a.active {
+
       background: rgba(32,201,151,.15);
+
       box-shadow: inset 0 0 12px rgba(32,201,151,.25);
+
       color: var(--green);
+
     }
+
     .bottom-nav a.active i { color: var(--green); }
 
+
+
     @media (max-width: 768px) {
+
       .hero-inner { padding: 30px 16px; }
+
       .logo-box { width: 145px; height: 145px; }
+
       .logo-box span { font-size: 2.6rem; }
+
       .program-item { flex-direction: column; align-items: flex-start; }
+
       .bottom-bar { width: calc(100% - 20px); }
+
       .bottom-nav {
+
         bottom: 62px;
+
         grid-template-columns: repeat(5, 1fr);
+
         padding: 8px;
+
       }
+
       .bottom-nav a { font-size: .72rem; padding: 8px 4px; }
+
       .bottom-nav a i { font-size: .95rem; }
+
       .back-to-top { left: 10px; bottom: 92px; }
+
       .topbar-item { min-width: 110px; font-size: .8rem; }
+
     }
+
   </style>
   <div class="particles-container" id="particles-container"></div>
   <div class="topbar">
@@ -597,20 +1164,7 @@
       <div class="badge-row">
        <div class="badge">الله اکبر</div>
        <div class="badge">دست خداعیان شد</div>
-       <div class="badge">خامنه ای جوان شد<!doctype html>
-<html lang="fa" dir="rtl">
- <head>
-  <title>New File</title>
- </head>
- <body>
-  <h1>بسم الله الرحمن الرحیم</h1>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>هیئت کریم اهل بیت   </title>
-  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <style>
-</div>
+       <div class="badge">خامنه ای جوان شد</div>
       </div>
      </div>
     </div>
@@ -621,7 +1175,7 @@
      <div class="grid">
       <div class="card">
        <h2>سال تأسیس</h2>
-       <p>سال تأسیس: <strong id="foundingYear">۱۳۹۶</strong></p>
+       <p>سال تأسیس: <strong id="foundingYear">۱۳۸۳</strong></p>
        <p class="small-note">.</p>
       </div>
       <div class="card">
@@ -715,211 +1269,417 @@
     </nav>
     <button class="back-to-top" id="backToTop" aria-label="بازگشت به بالا"><i class="fa-solid fa-arrow-up"></i></button>
     <script>
+
     const hadiths = [
+
       { text: "إِنَّمَا الأَعْمَالُ بِالنِّيَّاتِ، وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى.", source: "رسول اکرم (ص)" },
+
       { text: "مَن تَوَاضَعَ لِلّهِ رَفَعَهُ اللّهُ.", source: "رسول اکرم (ص)" },
+
       { text: "الدُّعَاءُ مُخُّ العِبَادَةِ.", source: "رسول اکرم (ص)" },
+
       { text: "أَحَبُّ النَّاسِ إِلَى اللَّهِ أَنْفَعُهُمْ لِلنَّاسِ.", source: "رسول اکرم (ص)" },
+
       { text: "اِلتَّقَوَى أَفْضَلُ زَادٍ.", source: "رسول اکرم (ص)" },
+
       { text: "مَنْ سَعَى فِي حَاجَةِ أَخِيهِ سَعَى اللَّهُ فِي حَاجَتِهِ.", source: "رسول اکرم (ص)" },
+
       { text: "لاَ يَدْخُلُ الْجَنَّةَ مَنْ كَانَ فِي قَلْبِهِ مِثْقَالُ ذَرَّةٍ مِنْ كِبْرٍ.", source: "رسول اکرم (ص)" },
+
       { text: "اَلْجَنَّةُ تَحْتَ أَظْلاَلِ السُّيُوفِ.", source: "رسول اکرم (ص)" },
+
       { text: "اَلْجَاهِلُ مَيِّتٌ وَأَهْلُ الْحَيَاةِ جَمِيعٌ.", source: "رسول اکرم (ص)" },
+
       { text: "مَنْ عَرَفَ نَفْسَهُ فَقَدْ عَرَفَ رَبَّهُ.", source: "رسول اکرم (ص)" },
+
       { text: "اَلصَّبْرُ مِفْتَاحُ الْفَرَجِ.", source: "رسول اکرم (ص)" },
+
       { text: "اَلْحِكْمَةُ ضَالَّةُ الْمُؤْمِنِ.", source: "رسول اکرم (ص)" },
+
       { text: "إِذَا اِتَّسَعَتِ الأَمْرُ، ضَاقَ الاحْتِيَالُ.", source: "امام علی (ع)" },
+
       { text: "زینت انسان، علم و بردباری اوست.", source: "امام علی (ع)" },
+
       { text: "ارزش هر انسان به اندازه دانایی اوست.", source: "امام علی (ع)" },
+
       { text: "قلب‌های مردم وحشی‌اند؛ هر کس با محبت به آن‌ها نزدیک شود، می‌پذیرند.", source: "امام علی (ع)" },
+
       { text: "بهترین مردم کسی است که برای مردم سودمندتر باشد.", source: "امام علی (ع)" },
+
       { text: "عاقل‌ترین مردم، کسی است که رفتار مردم را بشناسد.", source: "امام علی (ع)" },
+
       { text: "دوست واقعی کسی است که در هنگام سختی تو را فراموش نکند.", source: "امام علی (ع)" },
+
       { text: "از اسراف بپرهیزید، که آن کلید فقر است.", source: "امام علی (ع)" },
+
       { text: "کسی که زبان خود را نگه دارد، از لغزش‌هایش در امان می‌ماند.", source: "امام علی (ع)" },
+
       { text: "هر که به خرد خویش تکیه کند، گمراه شود.", source: "امام علی (ع)" },
+
       { text: "دانش، دوستی است که هرگز از تو جدا نمی‌شود.", source: "امام علی (ع)" },
+
       { text: "قناعت، گنجی است پایان‌ناپذیر.", source: "امام علی (ع)" },
+
       { text: "خداوند بنده‌ای را دوست دارد که در کارش استوار باشد.", source: "امام صادق (ع)" },
+
       { text: "کسی که نماز را سبک بشمارد، از برکت دور می‌شود.", source: "امام صادق (ع)" },
+
       { text: "سه چیز، دل را شاد می‌کند: دیدن سبزه، زن نیکوکار، و خوردنی‌های خوب.", source: "امام صادق (ع)" },
+
       { text: "پرهیزکاری، سرچشمه هر حکمت و دانایی است.", source: "امام صادق (ع)" },
+
       { text: "مؤمن، با سه خصلت شناخته می‌شود: نماز، روزه، و صدقه.", source: "امام صادق (ع)" },
+
       { text: "علم، در دل با پرهیزکاری استوار می‌گردد.", source: "امام صادق (ع)" },
+
       { text: "نزدیک‌ترین حالت بنده به پروردگارش، هنگامی است که در سجده باشد.", source: "امام صادق (ع)" },
+
       { text: "هر کس که در پی دانش برود، خداوند راهی بهشت را برایش هموار می‌سازد.", source: "امام صادق (ع)" },
+
       { text: "کسی که برای غیر خدا تواضع کند، خداوند او را پست می‌گرداند.", source: "امام صادق (ع)" },
+
       { text: "خداوند، ثواب زحمت‌کش را ضایع نمی‌کند.", source: "امام صادق (ع)" },
+
       { text: "خیر دنیا و آخرت در دو کلمه است: شکر و صبر.", source: "امام صادق (ع)" },
+
       { text: "برترین عبادت، مداومت بر تفکر در خداوند است.", source: "امام صادق (ع)" },
+
       { text: "مبادا که دنیا را بر آخرت ترجیح دهی.", source: "امام صادق (ع)" },
+
       { text: "از دروغ بپرهیزید، که کلید گناهان است.", source: "امام صادق (ع)" },
+
       { text: "خداوند، گوش شنوای کسی است که غیبت نکند.", source: "امام صادق (ع)" },
+
       { text: "هر که سخن چینی کند، در قیامت کور محشور گردد.", source: "امام صادق (ع)" },
+
       { text: "مؤمن، آینه‌ی مؤمن است.", source: "امام صادق (ع)" },
+
       { text: "حسد، دشمنی است که در لباس دوستی ظاهر می‌شود.", source: "امام صادق (ع)" },
+
       { text: "عجله، کار شیطان است.", source: "امام صادق (ع)" },
+
       { text: "هر کس نفس خود را بشناسد، عیوب دیگران را کمتر می‌بیند.", source: "امام علی (ع)" },
+
       { text: "دنیا، سرای فانی است و آخرت، سرای باقی.", source: "امام علی (ع)" },
+
       { text: "از معاشرت با بدان، دوری کن.", source: "امام علی (ع)" },
+
       { text: "بخشش، از بهترین خصلت‌هاست.", source: "امام علی (ع)" },
+
       { text: "فروتنی، نشانه‌ی بزرگواری است.", source: "امام علی (ع)" },
+
       { text: "وعده، حقی است که باید به آن عمل کرد.", source: "امام علی (ع)" },
+
       { text: "علم، میراث ارزشمند پیامبران است.", source: "امام علی (ع)" },
+
       { text: "کسی که کینه‌ورزی کند، هرگز به آرامش نمی‌رسد.", source: "امام علی (ع)" },
+
       { text: "بهترین سرمایه‌ی انسان، اندیشه‌ی نیکو است.", source: "امام علی (ع)" },
+
       { text: "خداوند، در دل‌های شکسته، تجلی می‌کند.", source: "امام علی (ع)" },
+
       { text: "صبر، بر دو قسم است: صبر بر آنچه ناپسند می‌داری، و صبر بر آنچه دوست می‌داری.", source: "امام علی (ع)" },
+
       { text: "غم و اندوه، نصف پیری است.", source: "امام علی (ع)" },
+
       { text: "مگذار که ترس از مرگ، تو را از زندگی باز دارد.", source: "امام علی (ع)" },
+
       { text: "هر که دل به دنیا بندد، خداوند او را به آن وا می‌گذارد.", source: "امام علی (ع)" },
+
       { text: "حقیقت، تلخ است، اما سودمند.", source: "امام علی (ع)" },
+
       { text: "علم، روشنایی بخش دل‌هاست.", source: "امام علی (ع)" },
+
       { text: "نیکی، هرگاه اندک باشد، باز هم نیکی است.", source: "امام علی (ع)" },
+
       { text: "شادی، مایه سلامتی بدن است.", source: "امام علی (ع)" },
+
       { text: "بردباری، پوشاننده‌ی عیوب است.", source: "امام علی (ع)" },
+
       { text: "خشم، کلید هر بدی است.", source: "امام علی (ع)" },
+
       { text: "وفای به عهد، نشانه ایمان است.", source: "امام علی (ع)" },
+
       { text: "بهترین کارها، بهترین عاقبت را دارد.", source: "امام علی (ع)" },
+
       { text: "کسی که تقوا پیشه کند، خداوند او را از هر گناهی باز می‌دارد.", source: "امام علی (ع)" },
+
       { text: "اندوه، روحت را می‌فرساید.", source: "امام علی (ع)" },
+
       { text: "گشاده‌رویی، کلید دوستی است.", source: "امام علی (ع)" },
+
       { text: "بخشش، از ترس، بهتر است.", source: "امام علی (ع)" },
+
       { text: "کسی که در طلب دانش باشد، بهشت را پیموده است.", source: "امام علی (ع)" },
+
       { text: "پرهیزکاری، بهترین زاد راه است.", source: "امام علی (ع)" },
+
       { text: "در هر حال، خدا را شکر کن.", source: "امام علی (ع)" },
+
       { text: "شکر، نعمت را زیاد می‌کند.", source: "امام علی (ع)" },
+
       { text: "کسی که در مقابل حق، تسلیم شود، سربلند است.", source: "امام علی (ع)" },
+
       { text: "وحدت، مایه قدرت است.", source: "امام علی (ع)" },
+
       { text: "حلم، بهترین زینت است.", source: "امام علی (ع)" },
+
       { text: "آزرم، نشانه عقل است.", source: "امام علی (ع)" },
+
       { text: "توبه، بهترین عبادت است.", source: "امام علی (ع)" },
+
       { text: "دوستی، ریشه هر خیر است.", source: "امام علی (ع)" },
+
       { text: "هر که به پدر و مادرش نیکی کند، عمرش طولانی شود.", source: "امام علی (ع)" },
+
       { text: "خشم، زبانی است که به خودت برمی‌گردد.", source: "امام علی (ع)" },
+
       { text: "هر کس به مردم خدمت کند، خدا به او خدمت می‌کند.", source: "امام علی (ع)" },
+
       { text: "نیکی، خود را بهتر معرفی می‌کند.", source: "امام علی (ع)" },
+
       { text: "در مورد بندگان خدا، خوش‌بین باشید.", source: "امام علی (ع)" },
+
       { text: "سخن نیک، صدقه است.", source: "امام علی (ع)" },
+
       { text: "توفیق، بهترین راهنماست.", source: "امام علی (ع)" },
+
       { text: "نیکی، پایان ندارد.", source: "امام علی (ع)" },
+
       { text: "هر که علم آموزد، زندگی‌اش نیکو گردد.", source: "امام علی (ع)" },
+
       { text: "بهترین زاد و توشه، پرهیزکاری است.", source: "امام علی (ع)" },
+
       { text: "شکر، سبب افزایش نعمت است.", source: "امام علی (ع)" },
+
       { text: "از دست دادن دنیا، بهتر از دست دادن آخرت است.", source: "امام علی (ع)" },
+
       { text: "هر که به خدا توکل کند، او را کفایت می‌کند.", source: "امام علی (ع)" },
+
       { text: "راز داری، نشانه مردانگی است.", source: "امام علی (ع)" },
+
       { text: "گشاده‌دستی، نشانه‌ی سخاوت است.", source: "امام علی (ع)" },
+
       { text: "بزرگی، در تواضع است.", source: "امام علی (ع)" }
+
     ];
 
+
+
     function getDayIndex() {
+
       const now = new Date();
+
       const startOfYear = new Date(now.getFullYear(), 0, 0);
+
       const diff = now - startOfYear;
+
       const oneDay = 1000 * 60 * 60 * 24;
+
       const dayOfYear = Math.floor(diff / oneDay);
+
       return dayOfYear % hadiths.length;
+
     }
+
+
 
     function showHadith() {
+
       const idx = getDayIndex();
+
       const hadithTextEl = document.getElementById("hadithText");
+
       const hadithSourceEl = document.getElementById("hadithSource");
 
+
+
       if (hadithTextEl && hadithSourceEl) {
+
         hadithTextEl.classList.remove("fade-in-hadith");
+
         void hadithTextEl.offsetWidth; // Trigger reflow
+
         hadithTextEl.classList.add("fade-in-hadith");
+
         hadithTextEl.textContent = hadiths[idx].text;
+
         hadithSourceEl.textContent = "— " + hadiths[idx].source;
+
       }
+
     }
+
+
 
     document.getElementById("yearNow").textContent = new Date().getFullYear();
 
+
+
     function updateClockAndDate() {
+
       const now = new Date();
+
       const time = now.toLocaleTimeString('fa-IR', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+
       const date = now.toLocaleDateString('fa-IR', { year: 'numeric', month: '2-digit', day: '2-digit' });
+
       document.getElementById("clock").textContent = time;
+
       document.getElementById("dateText").textContent = date;
+
     }
+
+
 
     showHadith();
+
     updateClockAndDate();
+
     setInterval(updateClockAndDate, 1000);
+
     setInterval(showHadith, 1000 * 60 * 60 * 24); // Update hadith daily
 
+
+
     const particlesContainer = document.getElementById("particles-container");
+
     const numParticles = 40;
+
     for (let i = 0; i < numParticles; i++) {
+
       const p = document.createElement("div");
+
       p.className = "particle";
+
       const size = 3 + Math.random() * 6;
+
       p.style.width = p.style.height = size + "px";
+
       p.style.left = Math.random() * 100 + "vw";
+
       p.style.animationDuration = 6 + Math.random() * 8 + "s";
+
       p.style.animationDelay = Math.random() * 8 + "s";
+
       p.style.opacity = 0.2 + Math.random() * 0.8;
+
       particlesContainer.appendChild(p);
+
     }
 
+
+
     const cardElements = document.querySelectorAll(".card, .join-panel, .hero-inner");
+
     cardElements.forEach(card => {
+
       card.addEventListener("mousemove", (e) => {
+
         const rect = card.getBoundingClientRect();
+
         const x = e.clientX - rect.left;
+
         const y = e.clientY - rect.top;
+
         const rotateX = -(y - rect.height / 2) / 28;
+
         const rotateY = (x - rect.width / 2) / 28;
+
         card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+
       });
+
       card.addEventListener("mouseleave", () => {
+
         card.style.transform = "";
+
       });
+
     });
+
+
 
     const backToTop = document.getElementById("backToTop");
+
     window.addEventListener("scroll", () => {
+
       if (window.scrollY > 300) {
+
         backToTop.classList.add("show");
+
       } else {
+
         backToTop.classList.remove("show");
+
       }
+
     });
+
     backToTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
 
+
+
     // Smooth scrolling for navigation links
+
     document.querySelectorAll('.bottom-nav a[href^="#"]').forEach(anchor => {
+
       anchor.addEventListener('click', function (e) {
+
         e.preventDefault();
+
         const targetId = this.getAttribute('href');
+
         const targetElement = document.querySelector(targetId);
+
         if (targetElement) {
+
           targetElement.scrollIntoView({
+
             behavior: 'smooth'
+
           });
 
+
+
           // Highlight active link
+
           document.querySelectorAll('.bottom-nav a').forEach(navLink => navLink.classList.remove('active'));
+
           this.classList.add('active');
+
         }
+
       });
+
     });
 
+
+
     // Animate sections on scroll
+
     const sections = document.querySelectorAll('.section');
+
     const observer = new IntersectionObserver((entries) => {
+
       entries.forEach(entry => {
+
         if (entry.isIntersecting) {
+
           entry.target.classList.add('visible');
+
           observer.unobserve(entry.target);
+
         }
+
       });
+
     }, { threshold: 0.1 });
 
+
+
     sections.forEach(section => observer.observe(section));
+
   </script>
    </div>
   </main>
